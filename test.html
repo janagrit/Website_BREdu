@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>html5测试</title>
+</head>
+<body>
+<div id="Index" style="text-align: center; width: auto;position:absolute;top:10px;">123
+</div>
+	<div id="imagestart" style="text-align: center; width: auto;position:absolute;top:50px;">456
+</div>
+<script src="/js/jquery-1.12.4.min.js"></script>
+<script>
+//初始化获取浏览器的屏幕的宽度
+var LoadWidth = parseInt($(window).width());
+//初始化触摸起点X轴
+var loadX,loadY;
+//初始化鼠标松开的X轴
+var MoveUp = false;
+
+$(function () {
+//
+$(".imagestart").on('touchstart', function (e) {
+var id = e.originalEvent.targetTouches[0];
+//获取鼠标的起始位置x
+MoveUp =true;
+loadX = id.pageX-parseInt($(".imagestart").css("left"));
+//赋值起始位置x
+//点击时赋值鼠标起来的坐标 在移动的时候会更新这个变量
+//获取鼠标的起始位置y
+loadY= id.pageY-parseInt($(".imagestart").css("top"));
+})
+//
+
+//
+$(".imagestart").on("touchmove", function (e) {
+var id = e.originalEvent.targetTouches[0];
+//获取鼠标的每次移动位置x
+var x = id.pageX-loadX-110;
+var x2=id.pageX-loadX;
+
+//获取鼠标的每次移动位置y111
+var y = id.pageY-loadY-110;
+var ThisLoad = $(this);
+//移动元素
+ThisLoad.animate({ 'left': x + "px" }, 0);
+ThisLoad.animate({ 'height': y + "px" }, 0);
+
+})
+//111
+
+//
+$(".imagestart").on("touchend", function (e) {
+//当手指松开的时候 计算鼠标移动开始到结束 x轴变化多少
+MoveUp =true;
+//恢复初始坐标
+loadX = 0;
+//恢复鼠标松开坐标
+
+
+})
+//
+
+})
+</script>
+</body>
+</html>
